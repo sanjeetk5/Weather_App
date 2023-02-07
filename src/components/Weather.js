@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import DisplayWeather from "./DisplayWeather";
+import { useContext } from "react";
 import "./weather.css";
-
+import { ThemeContext } from "./AppContextProvider";
+import Button from "./Button";
 function Weather() {
+  const val = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  console.log(val);
   const [weather, setWeather] = useState([]);
   const [form, setForm] = useState({
     city: "",
@@ -37,7 +42,13 @@ function Weather() {
     }
   };
   return (
-    <div className="weather">
+    <div
+      className="weather"
+      style={{
+        background: theme === "dark" ? "black" : "white",
+        color: theme === "dark" ? "White" : "black",
+      }}
+    >
       <span className="title">Weather Forecast🌞</span>
       <br />
       <form>
@@ -55,16 +66,25 @@ function Weather() {
           onChange={(e) => handleChange(e)}
         />
         <button className="getweather" onClick={(e) => weatherData(e)}>
-         👀Search
+          Search
         </button>
+
+        
       </form>
+        
+      <Button onClick={toggleTheme} btnText="Switch Modes" />  
+      
 
       {/* {console.log(weather)} */}
       {weather.data != undefined ? (
+        
         <div>
+          
           <DisplayWeather data={weather.data} />
         </div>
       ) : null}
+
+      
     </div>
   );
 }

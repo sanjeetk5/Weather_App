@@ -18,12 +18,13 @@ function DisplayWeather(props) {
               As of {new Date().toLocaleTimeString()}
             </span>
 
-            <h1>
+            <h1 className="sahi">
               {" "}
               {Math.floor(data.main.temp - 273.15)}
               <sup>o</sup>
+              C
             </h1>
-            <span className="weather-main">{data.weather[0].main}</span>
+            {/* <span className="weather-main">{data.weather[0].main}</span> */}
             <img className="weather-icon" src={iconurl} alt="" srcset="" />
             <span className="weather-description">
               {" "}
